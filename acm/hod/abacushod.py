@@ -46,6 +46,16 @@ class BoxHOD:
         self.logger.info(f'Processing {self.abacus_simname()} at z = {self.redshift}')
 
     def abacus_simdirs(self):
+        # Fix for the BGS subsample directory
+        if self.redshift == 0.2:
+            if self.sim_type == 'small':
+                sim_dir = '/global/cfs/cdirs/desi/cosmosim/Abacus/small/'
+                subsample_dir = '/pscratch/sd/s/sbouchar/abacus_subsamples_small/'
+            else:
+                sim_dir = '/global/cfs/cdirs/desi/cosmosim/Abacus/'
+                subsample_dir = '/pscratch/sd/s/sbouchar/abacus_subsamples_cleaned/'
+            return sim_dir, subsample_dir
+        
         if self.sim_type == 'small':
             sim_dir = '/global/cfs/cdirs/desi/cosmosim/Abacus/small/'
             subsample_dir = '/pscratch/sd/e/epaillas/summit_subsamples/boxes/small/'
