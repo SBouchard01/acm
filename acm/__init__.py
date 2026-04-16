@@ -1,4 +1,8 @@
+from importlib.metadata import PackageNotFoundError, version
+
 from .utils.logging import setup_logging
 
-# this is a test to trigger the ci
-test_var = "3"  # should be formatted
+try:
+    __version__ = version("acm")
+except PackageNotFoundError:
+    __version__ = "unknown"
