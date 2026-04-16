@@ -1,1 +1,1 @@
-test_var = '3' # DHould be fxied with ruff
+test_var = "3"  # DHould be fxied with ruff
