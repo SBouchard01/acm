@@ -241,14 +241,16 @@ class Observable:
         try:
             model = FCN.load_from_checkpoint(checkpoint_fn, strict=True)
         except pickle.UnpicklingError as err:
-            if 'Weights only load failed' not in str(err):
+            if "Weights only load failed" not in str(err):
                 raise
             logger.warning(
                 "Retrying checkpoint load with weights_only=False for %s due to PyTorch weights-only unpickling restrictions.",
                 checkpoint_fn,
             )
-            model = FCN.load_from_checkpoint(checkpoint_fn, strict=True, weights_only=False)
-        model.eval().to('cpu')
+            model = FCN.load_from_checkpoint(
+                checkpoint_fn, strict=True, weights_only=False
+            )
+        model.eval().to("cpu")
         return model
 
     @classmethod
@@ -1023,6 +1025,6 @@ class Observable:
         ax[1].legend(fontsize=8)
         fig.tight_layout()
         if save_fn is not None:
-            plt.savefig(save_fn, dpi=300, bbox_inches='tight')
-            self.logger.info(f'Saving plot to {save_fn}')
+            plt.savefig(save_fn, dpi=300, bbox_inches="tight")
+            self.logger.info(f"Saving plot to {save_fn}")
         return fig, ax
